@@ -1,6 +1,8 @@
 import {v4 as uuid} from "uuid";
 import AWS from "aws-sdk";
 import commonMiddleware from "../../lib/commonMiddleware";
+import createAuctionSchema from "../../lib/schemas/createAuctionSchema";
+import validator from "@middy/validator";
 
 import createError from "http-errors";
 
@@ -43,4 +45,12 @@ catch (error)
   };
 }
 
-export const handler = commonMiddleware(createAuction);
+export const handler = commonMiddleware(createAuction)
+  .use(
+    validator({
+    inputSchema: createAuctionSchema,
+    ajvOptions: {
+      strict: false,
+    },
+  })
+);
