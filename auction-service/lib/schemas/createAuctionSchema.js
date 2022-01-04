@@ -1,17 +1,17 @@
 const schema = {
     properties: {
-        queryStringParameters: {
-            type: "object",
+        body: {
+            type: 'object',
             properties: {
                 title: {
                     type: 'string',
                 },
             },
-            required: ['title'],
-        },
+        required: ['title'],
+      },
     },
     required: [
-        'body',
+        'body'
     ],
 };
 
